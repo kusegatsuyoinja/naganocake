@@ -2,6 +2,7 @@
 
 
   root 'public/homes#top'
+  get "home/about" => "homes#about"
   devise_for :customers, controllers: {
     sessions:      'customers/sessions',
     passwords:     'customers/passwords',
