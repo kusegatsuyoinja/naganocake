@@ -1,0 +1,31 @@
+<main>
+    <h2>商品新規登録</h2>
+    <table>
+        <tr>
+          <td>商品画像</td>
+          <%= form_with model:@user, local:true do |f| %>
+          <td><div class = "form-group">
+            <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+          </div></td>
+        </tr>
+        <tr>
+          <td>商品名</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td></td>
+        </tr><tr>
+          <td>税抜価格</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td></td>
+        </tr>
+    </table>
+</main>
