@@ -7,11 +7,11 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+
   <header>
     <div class="container">
       <nav>
-        
+
         <ul class="nav navbar-right">
           <% if customer_signed_in? %>
             <li><%= link_to "マイページ", public_customers_path, class: "btn btn-success" %></li>
@@ -25,22 +25,22 @@
            <li><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-success" %></li>
            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-success" %></li>
           <% else %>
-            <li><%= link_to "About", home_about_path, class: "btn btn-success" %></li>
+            <li><%= link_to "About", public_about_path, class: "btn btn-success" %></li>
             <li><%= link_to "商品一覧", public_items_path, class: "btn btn-success" %></li>
             <li><%= link_to "新規登録", new_customer_registration_path, class: "btn btn-success" %></li>
             <li><%= link_to "ログイン", new_customer_session_path, class: "btn btn-success" %></li>
           <% end %>
         </ul>
-        
+
       </nav>
     </div>
   </header>
-  
+
   <body>
     <%= yield %>
   </body>
-  
+
   <footer>
-    
+
   </footer>
 </html>
