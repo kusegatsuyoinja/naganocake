@@ -1,21 +1,19 @@
  Rails.application.routes.draw do
 
-
   root 'public/homes#top'
-  get "home/about" => "homes#about"
+  devise_for :customers, controllers: {
 
-  devise_for :customer, controllers: {
     sessions:      'public/sessions',
     passwords:     'public/passwords',
     registrations: 'public/registrations'
   }
 
-  devise_for :admin, controllers: {
-    sessions:      'admin/sessions',
-    passwords:     'admin/passwords',
-    registrations: 'admin/registrations'
+  devise_for :admins, controllers: {
+    registrations: 'admin/registrations',
+    sessions:      'admins/sessions',
+    passwords:     'admin/passwords'
   }
-  
+
   namespace :admin do
     get '/admins' => 'admins#top'
     resources :items

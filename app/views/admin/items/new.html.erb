@@ -1,31 +1,40 @@
 <main>
-    <h2>商品新規登録</h2>
-    <table>
-        <tr>
-          <td>商品画像</td>
-          <%= form_with model:@user, local:true do |f| %>
-          <td><div class = "form-group">
-            <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-          </div></td>
-        </tr>
-        <tr>
-          <td>商品名</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>商品説明</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>ジャンル</td>
-          <td></td>
-        </tr><tr>
-          <td>税抜価格</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>販売ステータス</td>
-          <td></td>
-        </tr>
-    </table>
+  <h2>商品新規登録</h2>
+  <table>
+    <%= form_with model:@item, local:true do |f| %>
+      <tr>
+        <td>商品画像</td>
+        <td><div class = "form-group">
+          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+        </div></td>
+      </tr>
+      <tr>
+        <td>商品名</td>
+        <td><%= f.text_field :name, autofocus: true, id:"inputName" %></td>
+      </tr>
+      <tr>
+        <td>商品説明</td>
+        <td><%= f.text_area :description, autofocus: true, id:"inputDescription" %></td>
+      </tr>
+      <tr>
+        <td>ジャンル</td>
+        <td></td>
+      </tr><tr>
+        <td>税抜価格</td>
+        <td><%= f.text_field :price, autofocus: true, id:"inputPrice" %></td>
+      </tr>
+      <tr>
+        <td>販売ステータス</td>
+        <td>
+          <%= form_with(model: item, local: true) do |form| %>
+            <%= form.radio_button :is_active, :currentlyforsale %>
+            <%= form.label :is_active, "販売中", {value:currentlyforsale :, style: "display: inline-block;"} %>
+            <%= form.radio_button :is_active, :Salesaresuspended %>
+            <%= form.label :is_active, "販売停止中", {value:Salesaresuspended :, style: "display: inline-block;"} %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to '新規登録',admin_item_path(item.id), class: "btn btn-success" %>
 </main>
