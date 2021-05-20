@@ -2,18 +2,15 @@
 
 
   root 'public/homes#top'
-  get "home/about" => "homes#about"
-
-  devise_for :customer, controllers: {
+  devise_for :customers, controllers: {
+    registrations: 'public/registrations',
     sessions:      'public/sessions',
-    passwords:     'public/passwords',
-    registrations: 'public/registrations'
-
+    passwords:     'public/passwords'
   }
-  devise_for :admin, controllers: {
-    sessions:      'admin/sessions',
-    passwords:     'admin/passwords',
-    registrations: 'admin/registrations'
+  devise_for :admins, controllers: {
+    registrations: 'admin/registrations',
+    sessions:      'admins/sessions',
+    passwords:     'admin/passwords'
   }
   
   namespace :admin do
