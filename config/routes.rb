@@ -1,18 +1,18 @@
  Rails.application.routes.draw do
 
-
   root 'public/homes#top'
   devise_for :customers, controllers: {
-    registrations: 'public/registrations',
+
     sessions:      'public/sessions',
-    passwords:     'public/passwords'
+    passwords:     'public/passwords',
+    registrations: 'public/registrations'
   }
   devise_for :admins, controllers: {
     registrations: 'admin/registrations',
     sessions:      'admins/sessions',
     passwords:     'admin/passwords'
   }
-  
+
   namespace :admin do
     get '/admins' => 'admins#top'
     resources :items
