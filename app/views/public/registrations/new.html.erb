@@ -1,6 +1,6 @@
 <div class="containar">
   <div class='row'>
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-9 offset-md-1'>
       <table class="table table-borderless">
       <thead><h5>新規会員登録</h5></thead>
     
@@ -9,105 +9,120 @@
         <tbody>
         <tr>
           <td>
-            <p>名前</p>
-          </td>
-          <td>
-            <div class="field">
-              <%= f.label :（姓） %>
-              <%= f.email_field :last_name, autofocus: true %>
-              <%= f.label :（名） %><%= f.email_field :first_name, autofocus: true %>
+            <div class="form-row">
+              <label for="inputName" class="col-sm-4 col-form-label-sm">名前</label>
+              <div class="col-sm-4">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownFormName1" placeholder="（姓）">
+              </div>
+              <div class="col-sm-4">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownFormName1" placeholder="（名）">
+              </div>
+              <%#= f.label :（姓） %>
+              <%#= f.email_field :last_name, autofocus: true %>
+              <%#= f.label :（名） %>
+              <%#= f.email_field :first_name, autofocus: true %>
             </div>
           </td>
         </tr>
         <tr>
           <td>
-            <p>フリガナ</p>
-          </td>
-          <td>
-            <div class="field">
-              <%= f.label :（セイ） %>
-              <%= f.email_field :last_ruby, autofocus: true %>
-              <%= f.label :（メイ） %>
-              <%= f.email_field :first_ruby, autofocus: true %>
+            <div class="form-row">
+              <label for="inputName3" class="col-sm-4 col-form-label-sm">フリガナ</label>
+              <div class="col-sm-4">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownFormName1" placeholder="（セイ）">
+              </div>
+              <div class="col-sm-4">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownFormName1" placeholder="（メイ）">
+              </div>
+              <%#= f.label :（セイ） %>
+              <%#= f.email_field :last_ruby, autofocus: true %>
+              <%#= f.label :（メイ） %>
+              <%#= f.email_field :first_ruby, autofocus: true %>
             </div>
           </td>
         </tr>
         <tr>
           <td>
-            <p>メールアドレス</p>
-          </td>
-          <td>
-            <div class="field">
+            <div class="form-row">
+              <label for="inputEmail3" class="col-sm-4 col-form-label-sm">メールアドレス</label>
+              <div class="col-sm-8">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownFormEmail1" placeholder="sample@example.com">
+              </div>
               <%#= f.label :メールアドレス %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
             </div>
           </td>
         </tr>
         <tr>
           <td>
-            <p>郵便番号（ハイフンなし）</p>
-          </td>
-          <td>
-            <div class="field">
+            <div class="form-row">
+              <label for="inputPostalCode3" class="col-sm-4 col-form-label-sm">郵便番号（ハイフンなし）</label>
+              <div class="col-sm-8">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownFormPostalCode1">
+              </div>
               <%#= f.label :郵便番号（ハイフンなし） %>
-              <%= f.email_field :postal_code, autofocus: true %>
+              <%#= f.email_field :postal_code, autofocus: true %>
             </div>
           </td>
         </tr>
         <tr>
           <td>
-            <p>住所</p>
-          </td>
-          <td>
-            <div class="field">
+            <div class="form-row">
+              <label for="inputAddress3" class="col-sm-4 col-form-label-sm">住所</label>
+              <div class="col-sm-8">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownAddress1">
+              </div>
               <%#= f.label :住所 %>
-              <%= f.email_field :address, autofocus: true %>
+              <%#= f.email_field :address, autofocus: true %>
             </div>
           </td>
         </tr>
         <tr>
           <td>
-            <p>電話番号（ハイフンなし）</p>
-          </td>
-          <td>
-            <div class="field">
+            <div class="form-row">
+              <label for="inputPhoneNumber3" class="col-sm-4 col-form-label-sm">電話番号（ハイフンなし）</label>
+              <div class="col-sm-8">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownPhoneNamber1">
+              </div>
               <%#= f.label :電話番号（ハイフンなし） %>
-              <%= f.email_field :phone_number, autofocus: true %>
+              <%#= f.email_field :phone_number, autofocus: true %>
             </div>
           </td>
         </tr>
         <tr>
           <td>
-            <p>パスワード</p>
-          </td>
-          <td>
-            <div class="field">
+            <div class="form-row">
+              <label for="inputPassword3" class="col-sm-4 col-form-label-sm">パスワード（６文字以上）</label>
+              <div class="col-sm-8">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownPassword1">
+              </div>
               <%#= f.label :パスワード %>
-              <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %>文字以上)</em>
-              <% end %>
-              <%= f.password_field :password, autocomplete: "new-password" %>
+              <%# if @minimum_password_length %>
+              <%#= @minimum_password_length %>
+              <%# end %>
+              <%#= f.password_field :password, autocomplete: "new-password" %>
             </div>
           </td>
         </tr>
         <tr>
           <td>
-            <p>パスワード（確認用）</p>
-          </td>
-          <td>
-            <div class="field">
+            <div class="form-row">
+              <label for="inputPassword3" class="col-sm-4 col-form-label-sm">パスワード（確認用）</label>
+              <div class="col-sm-8">
+                <input type="string" class="form-control form-control-sm" id="exampleDropdownPassword1">
+              </div>
               <%#= f.label :パスワード（確認用） %>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+              <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
             </div>
           </td>
         </tr>
-          <td></td>
-          <td></td>
+        <tr>
           <td>
             <div class="actions">
               <%= f.submit "新規登録", class: "btn btn-secondary" %>
             </div>
           </td>
+        </tr>
         </tbody>
       <% end %>
       </table>
