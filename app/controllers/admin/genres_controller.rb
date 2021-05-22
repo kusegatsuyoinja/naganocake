@@ -10,11 +10,12 @@ class Admin::GenresController < ApplicationController
     genre = Genre.new(genre_params)
     genre.save(genre_params)
     redirect_to admin_genres_path
-    # @genre.admin_id = current_admin.id
-    # if @genre.save(genre_params)
-    #   flash[:notice] = "You have created genre successfully."
+    # genre.admin_id = current_admin.id
+    # if genre.save(genre_params)
+    #   flash[:notice] = "保存ができました！"
     #   redirect_to admin_genres_path
     # else
+    #   flash.now[:alert] = "保存ができませんでした・・・"
     #   render :index
     # end
   end 
@@ -32,11 +33,12 @@ class Admin::GenresController < ApplicationController
     genre = Genre.find(params[:id])
     genre.update(genre_params)
     redirect_to admin_genres_path
-    # if @genre.update(genre_params)
-    #   flash[:notice] = "You have updated genre successfully."
+    # if genre.update(genre_params)
+    #   flash[:notice] = "更新ができました！"
     #   redirect_to admin_genres_path
     # else
     #   render :edit
+    #   flash.now[:alert] = "更新ができませんでした・・・"
     # end
   end 
   
