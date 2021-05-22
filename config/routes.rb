@@ -7,6 +7,7 @@
     passwords:     'public/passwords',
     registrations: 'public/registrations'
   }
+
   devise_for :admins, controllers: {
     registrations: 'admin/registrations',
     sessions:      'admins/sessions',
