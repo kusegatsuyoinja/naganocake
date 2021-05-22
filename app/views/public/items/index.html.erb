@@ -1,0 +1,19 @@
+<main>
+  <div style = "display:flex;" class = "title">
+    <h4>商品一覧</h4>
+    <p>(全<%= @item.count %>件)</p>
+  </div>
+
+  <div class = "clearfix">
+    <% @item. each do |item| %>
+      <div class = "imagephoto">
+        <%= attachment_image_tag item, :image_id, size: "40x40", fallback: "no_image.jpg"%>
+      </div>
+      <div class = "title">
+        <%= item.name %>
+      </div>
+      ¥<%= item.price %>
+    <% end %>
+  </div>
+
+</main>

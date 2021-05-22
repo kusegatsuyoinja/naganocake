@@ -1,16 +1,20 @@
 <main>
-  <h2>商品新規登録</h2>
+  <h2 class = "New Registration">
+    商品新規登録
+  </h2>
   <table>
-    <%= form_with model:@item, local:true do |f| %>
+    <%= form_with model: @item, local:true do |f| %>
       <tr>
         <td>商品画像</td>
-        <td><div class = "form-group">
-          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-        </div></td>
+        <td>
+          <div class = "form-group">
+            <%= f.attachment_field :image_id, placeholder: "商品画像" %>
+          </div>
+        </td>
       </tr>
       <tr>
         <td>商品名</td>
-        <td><%= f.text_field :name, autofocus: true, id:"inputName" %></td>
+        <td><%= f.text_field :name, autofocus: true, id:"inputName"%></td>
       </tr>
       <tr>
         <td>商品説明</td>
@@ -18,23 +22,25 @@
       </tr>
       <tr>
         <td>ジャンル</td>
-        <td></td>
+        <td>
+          <%= form_with model: @genre do |f| %>
+            <%= f.select :genre_id, [["ケーキ", "ケーキ"], ["プリン", "プリン"], ["焼き菓子", "焼き菓子"], ["キャンディ", "キャンディ"]], include_blank: "--選択して下さい--" %>
+          <% end %>
+        </td>
       </tr><tr>
         <td>税抜価格</td>
-        <td><%= f.text_field :price, autofocus: true, id:"inputPrice" %></td>
+        <td><%= f.text_field :price, autofocus: true, id:"inputPrice" %></td>円
       </tr>
       <tr>
         <td>販売ステータス</td>
         <td>
-          <%= form_with(model: item, local: true) do |form| %>
-            <%= form.radio_button :is_active, :currentlyforsale %>
-            <%= form.label :is_active, "販売中", {value:currentlyforsale :, style: "display: inline-block;"} %>
-            <%= form.radio_button :is_active, :Salesaresuspended %>
-            <%= form.label :is_active, "販売停止中", {value:Salesaresuspended :, style: "display: inline-block;"} %>
-          <% end %>
+          <%= f.radio_button :is_active, :currentlyforsale %>
+          <%= f.label :is_active, "販売中", {value: :currentlyforsale, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_active, :Salesaresuspended %>
+          <%= f.label :is_active, "販売停止中", {value: :Salesaresuspended, style: "display: inline-block;"} %>
         </td>
       </tr>
     <% end %>
   </table>
-  <%= link_to '新規登録',admin_item_path(item.id), class: "btn btn-success" %>
+  <%= link_to '新規登録',admin_item_path(@item.id), class: "btn btn-success" %>
 </main>
