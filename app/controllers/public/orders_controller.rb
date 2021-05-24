@@ -7,6 +7,14 @@ class Public::OrdersController < ApplicationController
   def confirm
     params[:order][:payment_method] = params[:order][:payment_method].to_i
     @order = Order.new(order_params) 
+    
+    @cart_items = current_customer.cart_items
+    @sub_total = 0
+
+    @cart_items.each do |cart_item|
+    @sub_total += (cart_item.item.price*1.1).floor*cart_item.quantity
+    
+    end
   
     if params[:order][:address_number] == "1"
       @order.delivery_postal_code = current_customer.postal_code
@@ -32,6 +40,17 @@ class Public::OrdersController < ApplicationController
        render "new"
       end
     end
+  end
+  
+  def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.bill = @order.(current_customer)
+    @order.postage = 800
+    @bill += @subtotal + @order.postage
+    @order.save
+    
+    redirect_to public_orders_thanks_path
   end
   
   private
