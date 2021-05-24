@@ -1,6 +1,7 @@
 class Admin::OrdersController < ApplicationController
   def index
-    @orders = Order
+    @orders = Order.all
+    
     if params[:key] =="from_maypage"
       @orders=current_customer.orders
     else

@@ -18,9 +18,15 @@
 
 .imagephoto{
   position: relative;
-  width: 240px;
-  height: 240px;
   display: block;
   border: 14px solid #e6e3dc;
   margin: 0 0 15px 0;
+}
+
+.between{
+  padding-left: 30px;
+}
+
+td{
+  padding-bottom: 30px;
 }

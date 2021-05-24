@@ -33,6 +33,7 @@
     get '/orders/confirm' => 'orders#confirm'
     post '/orders/confirm' => 'orders#confirm'
     get '/orders/thanks' => 'orders#thanks'
+    get '/unsubscribe/:name' => 'homes#unsubscribe', as: 'confirm_unsubscribe'
     patch '/customers/withdrawal' => 'customers#destroy'
     get '/customers/withdrawal' => 'customers#withdrawal'
     resources :orders, only:[:new,:create,:index,:show]

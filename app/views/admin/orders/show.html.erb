@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 offset-md-1">
+      <h6>注文履歴詳細</h6>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10">
+    <table class="table　table table-borderless">
+      <tr>
+        <th colspan="2">購入者</th>
+        <td colspan="4">
+          <!--　購入者表示　-->
+          <%= o.customer. %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">注文日</th>
+        <td colspan="4">
+          <%= o.created_at %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">配送先</th>
+        <td colspan="4">
+          <%= o.delivery_postal_code %>　<%= o.delivery_address %><br>
+          <%= o.delivery_name %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">支払い方法</th>
+        <td colspan="4">
+          <%= o.payment_method %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">注文ステータス</th>
+        <td colspan="4">
+          <!--プルダウン作る-->
+        </td>
+        <td colspan="2">
+          <%= link_to "更新", admin_order_path, class: "btn btn-success" %>
+        </td>
+      </tr>
+    </table>
+    </div>
+  </div>
