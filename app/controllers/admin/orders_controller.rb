@@ -1,8 +1,10 @@
 class Admin::OrdersController < ApplicationController
+  # before_action :authenticate_admins!
+  
   def index
     @orders = Order.all
     
-    if params[:key] =="from_maypage"
+    if params[:key] =="order_history"
       @orders=current_customer.orders
     else
       @orders=Order.all
