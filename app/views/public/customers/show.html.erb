@@ -8,32 +8,46 @@
       <div><%= link_to "編集する", edit_public_customers_path, class: "btn btn-secondary" %></div>
     </div>
  
-    <table class="table table-hover table-inverse">
-      
-      <thead>
-        
-          <tr><th>氏名</th><td><%= @customer.last_name + " " + @customer.first_name %></td></tr>
-          <tr><th>カナ</th><td><%= @customer.last_ruby + " " + @customer.first_ruby %></td></tr>
-          <tr><th>郵便番号</th><td><%= @customer.postal_code %></td></tr>
-          <tr><th>住所</th><td><%= @customer.address %></td></tr>
-          <tr><th>電話番号</th><td><%= @customer.phone_number %></td></tr>
-          <tr><th>メールアドレス</th><td><%= @customer.email %></td></tr>
-        
+    <table class="table">
+      <thead class="table-light">
+          <tr>
+            <th>氏名</th>
+            <td><%= @customer.last_name + " " + @customer.first_name %></td>
+          </tr>
+          <tr>
+            <th>カナ</th>
+            <td><%= @customer.last_ruby + " " + @customer.first_ruby %></td>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @customer.phone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
       </thead>
-      
     </table>
     
     <div class="col-sm-12 mb-3">
       <div class="col-sm-8 my-3">配送先</div>
     </div>
     <div class="mb-3">
-      <div><%= link_to "一覧を見る", edit_public_customers_path, class: "btn btn-outline-secondary" %></div>
+      <div><%= link_to "一覧を見る", public_addresses_path, class: "btn btn-outline-secondary" %></div>
     </div>
     <div class="col-sm-12 mb-3">
       <div class="col-sm-8 my-3">注文履歴</div>
     </div>
     <div class="mb-3">
-      <div><%= link_to "一覧を見る", edit_public_customers_path, class: "btn btn-outline-secondary" %></div>
+      <div><%= link_to "一覧を見る", new_public_order_path, class: "btn btn-outline-secondary" %></div>
     </dib>
     
     
