@@ -8,7 +8,12 @@ class Public::CustomersController < ApplicationController
     end
     
     def edit
-        @customer = Customer.find_by(params[:id])
+        @customer = current_customer
+    end
+    
+    def update
+        @customer = current_customer
+        redirect_to public_customers_path
     end 
     
     def create
@@ -16,15 +21,15 @@ class Public::CustomersController < ApplicationController
     end 
     
     def destroy
-        @customer = Customer.find_by(params[:id])
-    end
-
-    def withdrawal
-        @customer = Customer.find_by(params[:id])
+        @customer = current_customer
         @customer.update(is_deleted: false)
         reset_session
         flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
         redirect_to root_path
+    end
+
+    def withdrawal
+        @customer = current_customer
     end
     
     

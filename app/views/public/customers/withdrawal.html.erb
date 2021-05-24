@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
         <div>
-          <h2>本当に退会しますか？</h2>
+          <h5>本当に退会しますか？</h5>
           <div>
             <p>
               退会すると、会員登録情報や<br>
@@ -11,8 +11,8 @@
             </p>
           </div>
           <div>
-            <%= link_to '退会しない', public_customers_path(@customer), class="btn btn-secondary">Secondary %>
-            <%= link_to "退会する", root_path, class="btn btn-secondary btn-lg" disabled %>
+            <%= link_to "退会しない", public_customers_path(@customer), class:"btn btn-secondary" %>
+            <%= link_to "退会する", public_customers_withdrawal_path, method: :patch, class:"btn btn-outline-secondary" %>
           </div>
         </div>
     </div>
