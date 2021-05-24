@@ -19,7 +19,7 @@
                         <% @cart_items.each do |cart_item| %>
                         <td><%= attachment_image_tag cart_item.item, :image, :fill, 50, 50 %><%= cart_item.item.name %></td>
                         <td><%= (cart_item.item.price*1.1).floor %></td>
-                        <td><%= cart_item.item.quantity %></td>
+                        <td><%= cart_item.quantity %></td>
                         <td><%= (cart_item.item.price*1.1).floor*cart_item.quantity %></td>
                         <% end %>
                     </tr>
@@ -43,17 +43,17 @@
             
             <div>支払方法<%= @order.payment_method %></div>
             
-            <div>お届け先　〒<%= @order.postcode %> <%= @order.address %> <%= @order.name %></div>
+            <div>お届け先　〒<%= @order.delivery_postal_code %> <%= @order.delivery_address %> <%= @order.delivery_name %></div>
             
         </div>
         
         <div class ="row">
             <div class="mx-auto">
-                <%= form_with model: @order, url: orders_path, local: true do |f| %>
+                <%= form_with model: @order, url: public_orders_path, local: true do |f| %>
                 <%= f.hidden_field :payment_method, :value => @order.payment_method %>
-                <%= f.hidden_field :postcode, :value => @order.postcode %>
-                <%= f.hidden_field :address, :value => @order.address %>
-                <%= f.hidden_field :name, :value => @order.name %>
+                <%= f.hidden_field :delivery_postal_code, :value => @order.delivery_postal_code %>
+                <%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
+                <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
                 <%= f.hidden_field :bill, :value => @bill %>
                 <%= f.submit '注文を確定する', class:"btn btn-success" %>
                 <% end %>
