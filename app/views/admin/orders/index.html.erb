@@ -23,7 +23,7 @@
           <td colspan="3"><%= link_to o.created_at, admin_order_path(o.id) %></td>
           <td colspan="2">
             <!--　購入者表示　-->
-            <%= o.customer. %>
+            <%= o.customer.first_name + o.customer.last_name %>
           </td>
           <td colspan="2"><%= o.order_details.quantity %></td> 
           <td colspan="3"><%= o.order_status %></td>
