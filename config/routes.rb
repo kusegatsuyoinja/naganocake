@@ -8,7 +8,7 @@
     registrations: 'public/registrations'
   }
 
-  devise_for :admins, controllers: {
+  devise_for :admins,path: "admin", controllers: {
     registrations: 'admin/registrations',
     sessions:      'admin/sessions',
     passwords:     'admin/passwords'
