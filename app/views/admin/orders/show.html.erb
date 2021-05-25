@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 offset-md-1">
+      <h6>注文履歴詳細</h6>
+    </div>
+  </div>
+  
+  <% @order.each do |o| %>
+  <div class="row">
+    <div class="col-md-10">
+    <table class="table　table table-borderless">
+      <tr>
+        <th colspan="2">購入者</th>
+        <td colspan="4">
+          <!--　購入者表示　-->
+          <%= o.customer.first_name + o.customer.last_name %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">注文日</th>
+        <td colspan="4">
+          <%= o.created_at %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">配送先</th>
+        <td colspan="4">
+          <%= o.delivery_postal_code %>　<%= o.delivery_address %><br>
+          <%= o.delivery_name %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">支払い方法</th>
+        <td colspan="4">
+          <%= o.payment_method %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">注文ステータス</th>
+        <td colspan="4">
+          <!--ドロップダウン作る-->
+        </td>
+        <td colspan="2">
+          <%= link_to "更新", admin_order_path(o.id), class: "btn btn-success" %>
+        </td>
+      </tr>
+    </table>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table table-borderless">
+        <thead class="thead-light">
+          <tr>
+            <th colspan="3">商品名</th>
+            <th colspan="2">単価（税込）</th>
+            <th colspan="1">数量</th>
+            <th colspan="1">小計</th>
+            <th colspan="3">制作ステータス</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3"><%= o.order_details.item.name %></td>
+            <!--単価（税込）表示-->
+            <td colspan="2"><%= o.order_details.price %></td>
+            <!--数量表示-->
+            <td colspan="1"><%= o.order_details.quantity %></td>
+            <!--小計表示-->
+            <td colspan="1">
+              <%= o.order_details.price * o.order_details.quantity %>
+              <% @total += o.order_details.price * o.order_details.quantity %>
+            </td>
+            <!--制作ステータス表示-->
+            <td colspan="3"><%= o. %></td>
+            <td colspan="1"><%= link_to "更新", admin_order_path(o.id) class: "btn btn-success" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-md-2 offset-md-1">
+      <table class="table table-borderless">
+        <tr>
+          <th　class="font-weight-bold">商品合計</th>
+          <td class="offset-md-1"><% @total %></td>
+        </tr>
+        <tr>
+          <th　class="font-weight-bold">送料</th>
+          <td class="offset-md-1"><%= o.postage %></td>
+        </tr>
+        <tr>
+          <th　class="font-weight-bold">請求金額合計</th>
+          <td class="offset-md-1"><% @total * o.postage %></td>
+        </tr>
+      </table>
+    </div>
+    
+  </div>
+  <% end %>
+  
+</div>
