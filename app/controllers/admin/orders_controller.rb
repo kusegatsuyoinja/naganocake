@@ -18,4 +18,14 @@ class Admin::OrdersController < ApplicationController
 # 　    @orders = Order.all
 # 　  end
   end
+  
+  def show
+    @order = Order.find(params[:id])
+    @total = 0
+  end 
+  
+  def update
+    
+  end 
+  
 end
