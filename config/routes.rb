@@ -2,7 +2,6 @@
 
   root 'public/homes#top'
   devise_for :customers, controllers: {
-
     sessions:      'public/sessions',
     passwords:     'public/passwords',
     registrations: 'public/registrations'
@@ -10,7 +9,7 @@
 
   devise_for :admins, controllers: {
     registrations: 'admin/registrations',
-    sessions:      'admins/sessions',
+    sessions:      'admin/sessions',
     passwords:     'admin/passwords'
   }
 

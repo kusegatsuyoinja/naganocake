@@ -4,7 +4,7 @@ class Public::CustomersController < ApplicationController
     end 
     
     def show
-        @customer = Customer.find(current_customer.id)
+        @customer = Custome
     end
     
     def edit
@@ -14,6 +14,10 @@ class Public::CustomersController < ApplicationController
     def update
         @customer = current_customer
         redirect_to public_customers_path
+        # @customer = Customer.find(params[:id])
+        # if @customer.update(customer_params)
+        #   redirect_to public_customers_path(@customer)
+        # end 
     end 
     
     def create
@@ -35,6 +39,6 @@ class Public::CustomersController < ApplicationController
     
     private
     def customer_params
-      params.require(:@customer).permit(:name, :postal_code, :address, :phone_number, :email)
+      params.require(:@customer).permit(:last_name, :first_name, :last_ruby, :first_ruby, :postal_code, :address, :phone_number, :email)
     end
 end
