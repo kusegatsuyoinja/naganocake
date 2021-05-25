@@ -10,7 +10,7 @@
 
   devise_for :admins, controllers: {
     registrations: 'admin/registrations',
-    sessions:      'admins/sessions',
+    sessions:      'admin/sessions',
     passwords:     'admin/passwords'
   }
 
