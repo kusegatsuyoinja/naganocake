@@ -23,8 +23,8 @@
   height: 280px;
   text-align: center;
   margin: 20px auto;
-  // background-image: url("<%= asset_path("top.png") %>");
-  // background-size: 100% auto;
+  background-image: url("/top.png");
+  background-size: 100% auto;
 }
 
 .top-main-visual-content {
@@ -83,4 +83,12 @@
 
 .about-main-content-text {
   font-size: 20px;
+}
+
+.about-img {
+  width: 600px;
+  height: 280px;
+  margin: 20px auto;
+  background-image: url("/top.png");
+  background-size: 100% auto;
 }
