@@ -13,7 +13,6 @@ class Public::CustomersController < ApplicationController
 
     def update
         @customer = Customer.find(params[:id])
-        if @customer.update(customer_params)
         redirect_to public_customers_path(@customer)
         if @item.update(item_params)
           redirect_to admin_item_path(@item.id)
