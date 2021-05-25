@@ -1,28 +1,28 @@
 <main>
   <div class = "container">
-  <div class = "row">
-  <div style = "display:flex;" class = "title">
-    <h4>商品一覧</h4>
-    <p>(全<%= @item.count %>件)</p>
-  </div>
-  </div>
+    <div class = "row">
+      <div class = "title" style = "display:flex;">
+        <h4>商品一覧</h4>
+        <p>(全<%= @item.count %>件)</p>
+      </div>
+    </div>
 
-<div class = "row">
-  <div class = "offset-md-1">
-  <div class = "clearfix">
-    <% @item. each do |item| %>
-    <%= link_to public_item_path(item.id) do %>
-      <div class = "imagephoto">
-        <%= attachment_image_tag item, :image, size: "180x140", fallback: "no_image.jpg"%>
+    <div class = "row">
+      <div class = "offset-md-1">
+        <% @item. each do |item| %>
+          <div class = "clearfix" style = "display: inline-block; margin-left: 15px;">
+            <%= link_to public_item_path(item.id) do %>
+              <div class = "imagephoto">
+                <%= attachment_image_tag item, :image, size: "180x140", fallback: "no_image.jpg"%>
+              </div>
+            <% end %>
+            <div class = "title">
+              <%= item.name %>
+            </div>
+            ¥<%= item.price %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-      <div class = "title">
-        <%= item.name %>
-      </div>
-      ¥<%= item.price %>
-    <% end %>
+    </div>
   </div>
-</div>
-</div>
-</div>
 </main>
