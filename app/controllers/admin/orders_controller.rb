@@ -1,2 +1,31 @@
 class Admin::OrdersController < ApplicationController
+  # before_action :authenticate_admins!
+  
+  def index
+    @orders = Order.all
+    
+    if params[:key] =="order_history"
+      @orders=current_customer.orders
+    else
+      @orders=Order.all
+    end
+# 　path = Rails.application.routes.recognize_path(request.referer)
+
+# 　# path[:controller]で遷移元コントローラーを、path[:action]でアクションを取得
+# 　  if  path[:controller] == "admin/customers/:id" && path[:action] == "show"
+#       @order = Order.where(user_id: path[:id])
+#     else 
+# 　    @orders = Order.all
+# 　  end
+  end
+  
+  def show
+    @order = Order.find(params[:id])
+    @total = 0
+  end 
+  
+  def update
+    
+  end 
+  
 end

@@ -16,11 +16,11 @@
       <% @newitems.each do |newitem| %>
         <div class="products-item">
           <%= link_to public_item_path(newitem) do %>
-            <%#= attachment_image_tag newitem, :image, :fill, 150, 150, class:"items-item-img" %>
+            <%= attachment_image_tag newitem, :image, :fill, 150, 150, class:"items-item-img" %>
           <% end %>
           <section class="products-text">
             <h5 class="items-text-name"><%= newitem.name %></h5>
-            <h5 class="items-text-price">¥<%= (newitem.item.price*1.1).floor %></h5>
+            <h5 class="items-text-price">¥<%= (newitem.price*1.1).floor %></h5>
           </section>
         </div>
       <% end %>
