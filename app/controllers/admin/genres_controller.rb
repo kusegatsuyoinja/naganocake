@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-   # before_action :authenticate_admins!
+   before_action :authenticate_admins!
   
   def index
     @genres = Genre.all
@@ -7,39 +7,36 @@ class Admin::GenresController < ApplicationController
   end 
   
   def create
+    # 特定（今）のユーザーだけが新規保存できるようにする記述がわからない
     genre = Genre.new(genre_params)
-    genre.save(genre_params)
-    redirect_to admin_genres_path
-    # genre.admin_id = current_admin.id
-    # if genre.save(genre_params)
-    #   flash[:notice] = "保存ができました！"
-    #   redirect_to admin_genres_path
-    # else
-    #   flash.now[:alert] = "保存ができませんでした・・・"
-    #   render :index
-    # end
+    if genre.save(genre_params)
+      flash[:notice] = "保存ができました！"
+      redirect_to admin_genres_path
+    else
+      flash.now[:alert] = "保存ができませんでした・・・"
+      render :index
+    end
   end 
   
   def edit
     @genre = Genre.find(params[:id])
-    # if @genre.user == current_user
-    #   render :edit
-    # else
-    #   redirect_to admin_genres_path
-    # end
+    # この下のif文のユーザー照合の仕方が合ってるかわからない
+    if @genre.admin_id == current_user.id
+      render :edit
+    else
+      redirect_to admin_genres_path
+    end
   end 
   
   def update
     genre = Genre.find(params[:id])
-    genre.update(genre_params)
-    redirect_to admin_genres_path
-    # if genre.update(genre_params)
-    #   flash[:notice] = "更新ができました！"
-    #   redirect_to admin_genres_path
-    # else
-    #   render :edit
-    #   flash.now[:alert] = "更新ができませんでした・・・"
-    # end
+    if genre.update(genre_params)
+     flash[:notice] = "更新ができました！"
+     redirect_to admin_genres_path
+    else
+     render :edit
+      flash.now[:alert] = "更新ができませんでした・・・"
+    end
   end 
   
   private

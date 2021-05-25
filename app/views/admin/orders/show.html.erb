@@ -5,7 +5,6 @@
     </div>
   </div>
   
-  <% @order.each do |o| %>
   <div class="row">
     <div class="col-md-10">
     <table class="table　table table-borderless">
@@ -19,31 +18,33 @@
       <tr>
         <th colspan="2">注文日</th>
         <td colspan="4">
-          <%= o.created_at %>
+          <%= @order.created_at %>
         </td>
       </tr>
       <tr>
         <th colspan="2">配送先</th>
         <td colspan="4">
-          <%= o.delivery_postal_code %>　<%= o.delivery_address %><br>
-          <%= o.delivery_name %>
+          <%= @order.delivery_postal_code %>　<%= @order.delivery_address %><br>
+          <%= @order.delivery_name %>
         </td>
       </tr>
       <tr>
         <th colspan="2">支払い方法</th>
         <td colspan="4">
-          <%= o.payment_method %>
+          <%= @order.payment_method %>
         </td>
       </tr>
+      <%= form_with model:@order, url: admin_order_path, method: :patch do |f| %>
       <tr>
         <th colspan="2">注文ステータス</th>
         <td colspan="4">
-          <!--ドロップダウン作る-->
+          <%= f.select (:order_status, [['入金待ち', '0'], ['入金確認', '1'],　['製作中', '2'],　['発送準備中', '3'],　['発送済み', '4']], { selected: o.order_status }) %>
         </td>
         <td colspan="2">
-          <%= link_to "更新", admin_order_path(o.id), class: "btn btn-success" %>
-        </td>
+          <%= f.submit '更新', class: "btn btn-success" %>
+      	</td>
       </tr>
+      <% end %>
     </table>
     </div>
   </div>
@@ -62,6 +63,7 @@
           </tr>
         </thead>
         <tbody>
+        <% @order.each do |o| %>
           <tr>
             <td colspan="3"><%= o.order_details.item.name %></td>
             <!--単価（税込）表示-->
@@ -74,9 +76,13 @@
               <% @total += o.order_details.price * o.order_details.quantity %>
             </td>
             <!--制作ステータス表示-->
-            <td colspan="3"><%= o. %></td>
-            <td colspan="1"><%= link_to "更新", admin_order_path(o.id) class: "btn btn-success" %></td>
+            <td colspan="3">
+              <%= f.select (:order_status, [['制作不可', '0'], ['制作待ち', '1'],　['製作中', '2'],　['制作完了', '3'], { selected: o.order_details.work_status }) %>
+            </td>
+            <!--注文詳細のURLの名前が合わない-->
+            <td colspan="1"><%= link_to "更新", admin_order_item_path class: "btn btn-success" %></td>
           </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
@@ -99,6 +105,5 @@
     </div>
     
   </div>
-  <% end %>
   
 </div>

@@ -1,5 +1,5 @@
 class Public::AddressesController < ApplicationController
-  # before_action :authenticate_customer!
+  before_action :authenticate_customer!
   
   def index
     @addresses = Address.all
@@ -7,17 +7,15 @@ class Public::AddressesController < ApplicationController
   end
   
   def create
+    # 特定（今）のユーザーだけが新規保存できるようにする記述がわからない
     address = Address.new(address_params)
-    address.save(address_params)
-    redirect_to public_addresses_path
-    # genre.admin_id = current_admin.id
-    # if genre.save(genre_params)
-    #   flash[:notice] = "保存ができました！"
-    #   redirect_to admin_genres_path
-    # else
-    #   flash.now[:alert] = "保存ができませんでした・・・"
-    #   render :index
-    # end
+    if address.save(address_params)
+      flash[:notice] = "保存ができました！"
+      redirect_to public_addresses_path
+    else
+      flash.now[:alert] = "保存ができませんでした・・・"
+      render :index
+    end
   end
   
   def destroy
@@ -28,24 +26,23 @@ class Public::AddressesController < ApplicationController
   
   def edit
     @address = Address.find(params[:id])
-    # if @genre.user == current_user
-    #   render :edit
-    # else
-    #   redirect_to admin_genres_path
-    # end
+    # この下のif文のユーザー照合の仕方が合ってるかわからない
+    if @address.customer == current_user
+      render :edit
+    else
+      redirect_to admin_genres_path
+    end
   end
   
   def update
     address = Address.find(params[:id])
-    address.update(address_params)
-    redirect_to public_addresses_path
-    # if genre.update(genre_params)
-    #   flash[:notice] = "更新ができました！"
-    #   redirect_to admin_genres_path
-    # else
-    #   render :edit
-    #   flash.now[:alert] = '更新ができませんでした・・・'
-    # end
+    if address.update(address_params)
+      flash[:notice] = "更新ができました！"
+      redirect_to public_addresses_path
+    else
+      render :edit
+      flash.now[:alert] = '更新ができませんでした・・・'
+    end
   end 
   
   private
