@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_054853) do
     t.string "name"
     t.text "description"
     t.integer "price"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
