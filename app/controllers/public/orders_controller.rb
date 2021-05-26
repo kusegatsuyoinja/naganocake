@@ -62,13 +62,24 @@ class Public::OrdersController < ApplicationController
     @cart_items.each do |cart_item|
     @sub_total += (cart_item.item.price*1.1).floor*cart_item.quantity
     end
-    # @order.bill = @order.(current_customer)
     @order.postage = 800
     @bill = 0
     @bill = @sub_total + @order.postage
     @order.bill = @bill
     @order.save
     
+    
+    
+    @order_cart_items = current_customer.cart_items
+    @order_cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.item_id = cart_item.item.id
+      @order_detail.order_id = @order.id
+      @order_detail.quantity = cart_item.quantity
+      @order_detail.price = (cart_item.item.price*1.1).floor
+      @order_detail.save
+    end
+    @order_cart_items.destroy_all
     
     
     redirect_to public_orders_thanks_path
