@@ -80,7 +80,7 @@
               <%= f.select (:order_status, [['制作不可', '0'], ['制作待ち', '1'],　['製作中', '2'],　['制作完了', '3'], { selected: o.order_details.work_status }) %>
             </td>
             <!--注文詳細のURLの名前が合わない-->
-            <td colspan="1"><%= link_to "更新", admin_order_item_path class: "btn btn-success" %></td>
+            <td colspan="1"><%= link_to "更新", admin_order_detail_path class: "btn btn-success" %></td>
           </tr>
         <% end %>
         </tbody>

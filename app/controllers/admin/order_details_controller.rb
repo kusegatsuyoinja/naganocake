@@ -1,8 +1,8 @@
 class Admin::OrderDetailsController < ApplicationController
-  before_action :authenticate_admins!
+  #before_action :authenticate_admin!
   def update
     order_detail = OrderDetail.find(params[:id])
-    if order.update(order_params)
+    if order_detail.update(order_params)
      flash[:notice] = "更新ができました！"
      redirect_to admin_order_path
     else
