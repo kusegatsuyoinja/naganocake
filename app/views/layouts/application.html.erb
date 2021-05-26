@@ -9,11 +9,13 @@
   </head>
   <header class="navbar navbar-fixed-top header">
     <div class="container">
-      
-      <nav class="nav navbar-left">
-        <span class="header__left">LOGO</span>
+  
+      <nav class="nav navbar-nav navbar-left">
+        <%= link_to root_path do %>
+        <%= image_tag "logo_s.jpg", :size =>"100x67" %>
+        <% end %>
       </nav>
-      
+
       <nav>
 
         <ul class="nav navbar-right">
