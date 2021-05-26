@@ -13,6 +13,6 @@ class Admin::OrderDetailsController < ApplicationController
   
   private
   def order_params
-    params.require(:order).permit(:order_status)
+    params.require(:order).permit(:order_status, :quantity)
   end
 end

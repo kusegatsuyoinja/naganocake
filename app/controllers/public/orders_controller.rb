@@ -69,6 +69,8 @@ class Public::OrdersController < ApplicationController
     @order.bill = @bill
     @order.save
     
+    
+    
     redirect_to public_orders_thanks_path
   end
   
