@@ -31,7 +31,7 @@
             <tr>
               <td  nowrap style = "padding-bottom: 15px;">税込価格</br>（税抜価格）</td>
               <td style = "padding-bottom: 15px;">
-                <%= @item.price*1.1 %>(<%= @item.price %>)円
+                <%= (@item.price*1.1).floor(-1) %>(<%= (@item.price).floor %>)円
               </td>
             </tr>
             <tr>
