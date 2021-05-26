@@ -8,30 +8,30 @@
         <%= attachment_image_tag @item, :image, size: "250x150", fallback: "no_image.jpg"%>
       </div>
       <div class = "col-md-7">
-        <table>
-          <thead>
-            <tr>
-              <th style = "padding-bottom: 5px; font-size: 25px;"><%= @item.name %></th>
-            </tr>
-            <tr>
-              <td style = "padding: 5px 0 5px 0;"><%= @item.description %></td>
-            </tr>
-            <tr>
-              <td style = "padding: 5px 0 5px 0;">¥<%= @item.price*1.1 %>（税込）</td>
-            </tr>
-            <%= form_with model: @cart_item, url: public_cart_items_path, local:true do |f| %>
+        <%= form_with model: @cart_item, url: public_cart_items_path, local:true do |f| %>
+          <table>
+            <thead>
               <tr>
-                <td style = "padding-bottom: 5px;">
-                  <%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10]], include_blank: "個数を選択" %>
-                </td>
-                <td style = "padding-right: 200px;">
-                  <%= f.hidden_field :item_id, :value => @item.id %>
-                  <%= f.submit 'カートに入れる',class: "btn btn-success" %>
-                </td>
+                <th style = "padding-bottom: 5px; font-size: 25px;"><%= @item.name %></th>
               </tr>
-            <% end %>
-          </thead>
-          </table>
+              <tr>
+                <td style = "padding: 5px 0 5px 0;"><%= @item.description %></td>
+              </tr>
+              <tr>
+                <td style = "padding: 5px 0 5px 0;">¥<%= @item.price*1.1 %>（税込）</td>
+              </tr>
+                <tr>
+                  <td style = "padding-bottom: 5px;">
+                    <%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10]], include_blank: "個数を選択" %>
+                  </td>
+                  <td style = "padding-right: 200px;">
+                    <%= f.hidden_field :item_id, :value => @item.id %>
+                    <%= f.submit 'カートに入れる',class: "btn btn-success" %>
+                  </td>
+                </tr>
+              </thead>
+            </table>
+          <% end %>
         </div>
       </div>
     </div>

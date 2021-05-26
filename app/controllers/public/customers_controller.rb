@@ -8,17 +8,13 @@ class Public::CustomersController < ApplicationController
     end
 
     def edit
-        @customer = Customer.find(params[:id])
+        @customer = Customer.find(current_customer.id)
     end
 
     def update
-        @customer = Customer.find(params[:id])
+        @customer = Customer.find(current_customer.id)
+        @customer.update(customer_params)
         redirect_to public_customers_path(@customer)
-        if @item.update(item_params)
-          redirect_to admin_item_path(@item.id)
-        else
-          render "edit"
-        end
     end
 
     def create
