@@ -7,12 +7,11 @@ class Admin::ItemsController < ApplicationController
 
     def index
         @item = Item.all
-        # @genre = Genre.find(params[:id])
+
     end
 
     def show
         @item = Item.find(params[:id])
-        @genre = Genre.find(params[:id])
     end
 
     def edit
