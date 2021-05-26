@@ -20,7 +20,7 @@
     resources :genres
     resources :customers
     resources :orders,only:[:index,:show,:update]
-    resources :order_items, only:[:update]
+    resources :order_details, only:[:update]
   end
   namespace :public do
     get '/about' => 'homes#about'
