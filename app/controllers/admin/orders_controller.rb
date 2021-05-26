@@ -5,9 +5,9 @@ class Admin::OrdersController < ApplicationController
     @orders = Order.all
     
     if params[:key] =="order_history"
-      @orders=current_customer.orders
-    else
       @orders=Order.all
+    else
+      @orders=current_customer.orders
     end
 # 　path = Rails.application.routes.recognize_path(request.referer)
 
