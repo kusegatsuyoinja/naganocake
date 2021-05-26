@@ -20,7 +20,7 @@
         
         <div class="col-sm-12">
           <label style="margin-left: 60px;"><%= f.radio_button :address_number, 2 %>登録済み住所から選択</label>
-          <div style="margin-left:80px; padding:0 100px;"><%= f.collection_select(:address, current_customer.addresses, :id, :address )%></div>
+          <div style="margin-left:80px; padding:0 100px;"><%= f.collection_select(:address, current_customer.addresses, :id, :full_address )%></div>
           <!--<div style="margin-left:80px; padding:0 100px;"><%#= f.collection_select(:address, current_customer.addresses, :id, :address_all )%></div>-->
         </div>
         
