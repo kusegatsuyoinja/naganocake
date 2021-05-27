@@ -9,6 +9,7 @@ class Public::AddressesController < ApplicationController
   def create
     # 特定（今）のユーザーだけが新規保存できるようにする記述がわからない
     address = Address.new(address_params)
+    address.customer_id = current_customer.id
     if address.save(address_params)
       flash[:notice] = "保存ができました！"
       redirect_to public_addresses_path
