@@ -28,7 +28,6 @@
           <td colspan="2">
           <% sum = 0 %>
           <% for order_detail in o.order_details do %>
-          <% order_detail.quantity %>
           <% sum += order_detail.quantity %>
           <% end %>
           <%= sum %>

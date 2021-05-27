@@ -65,6 +65,7 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     @bill = 0
     @bill = @sub_total + @order.postage
+    @order.order_status = "入金待ち"
     @order.bill = @bill
     @order.save
     
