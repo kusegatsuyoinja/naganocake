@@ -4,7 +4,7 @@
       <h6>注文履歴詳細</h6>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-10">
     <table class="table　table table-borderless">
@@ -48,7 +48,7 @@
     </table>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-8">
       <table class="table table-borderless">
@@ -67,9 +67,9 @@
           <tr>
             <td colspan="3"><%= o.order_details.item.name %></td>
             <!--単価（税込）表示-->
-            <td colspan="2"><%= o.order_details.price %></td>
+            <td colspan="2"><%= (o.order_details.price). %></td>
             <!--数量表示-->
-            
+
             <td colspan="1"><%= o.order_details.quantity %></td>
             <!--小計表示-->
             <td colspan="1">
@@ -87,7 +87,7 @@
         </tbody>
       </table>
     </div>
-    
+
     <div class="col-md-2 offset-md-1">
       <table class="table table-borderless">
         <tr>
@@ -104,7 +104,7 @@
         </tr>
       </table>
     </div>
-    
+
   </div>
-  
+
 </div>

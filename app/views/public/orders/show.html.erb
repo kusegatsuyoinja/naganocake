@@ -4,63 +4,56 @@
       <h6>注文履歴詳細</h6>
     </div>
   </div>
-  
+
   <div class="row">
-    
+
     <div class="col-md-8">
     <p>注文情報</p>
     <table class="table table-bordered">
-    <% @order.each do |o| %>
       <tr>
-        <!-- thに背景色と幅の両方を指定する方法が？　-->
+         <!--thに背景色と幅の両方を指定する方法が？-->
         <th class="active">注文日</th>
-        <td colspan="4"><%= o.created_at %></td>
+        <td colspan="4"><%= @order.created_at %></td>
       </tr>
       <tr>
         <th class="active">配送先</th>
         <td colspan="4">
-          <%= o.delivery_postal_code %><br>
-          <%= o.delivery_address %><br>
-          <%= o.delivery_name %>
+          <%= @order.delivery_postal_code %><br>
+          <%= @order.delivery_address %><br>
+          <%= @order.delivery_name %>
         </td>
       </tr>
       <tr>
         <th class="active">支払い方法</th>
-        <td colspan="4"><%= o.payment_method %></td>
+        <td colspan="4"><%= @order.payment_method %></td>
       </tr>
       <tr>
         <th class="active">ステータス</th>
-        <td colspan="4"><%= o.order_status %></td>
+        <td colspan="4"><%= @order.order_status %></td>
       </tr>
-    <% end %>
     </table>
     </div>
-    
+
     <div class="col-md-4">
     <p>請求情報</p>
     <table class="table table-bordered">
-    <% @order.each do |o| %>
       <tr>
         <th class="active">商品合計</th>
-        <td colspan="4"><%= o.order_details.price %></td>
+        <td colspan="4"><%= (@order.bill - @order.postage).floor(-1) %></td>
       </tr>
       <tr>
         <th class="active">配送料</th>
-        <td colspan="4"><%= o.shipping_cost %></td>
+        <td colspan="4"><%= (@order.postage).floor(-1) %></td>
       </tr>
       <tr>
         <!-- 請求額の出し方分からない　-->
-        <th class="active">ご請求額</th> <td colspan="4"><%=  %></td>
+        <th class="active">ご請求額</th> <td colspan="4"><%= (@order.bill).floor(-1) %></td>
       </tr>
-      <tr>
-        <th class="active">ステータス</th> <td colspan="4"><%= o.order_status %></td>
-      </tr>
-    <% end %>
     </table>
     </div>
   </div>
-  
-  
+
+
   <div class="row">
     <div class="col-md-10">
     <table class="table table-bordered">
@@ -72,17 +65,17 @@
           <th colspan="1">小計</th>
         </tr>
       </thead>
-      
+
       <tbody>
-        <% @order.each do |o| %>
+        <% @order.order_details.each do |o| %>
         <tr>
           <!--　注文商品表示（アソシエーション）-->
-          <td colspan="6"><%= o.order_details.product_id.name %></td>
+          <td colspan="6"><%= o.item.name %></td>
           <td colspan="2">
-            <%= o.delivery_postal_code %>
+            <%= (o.item.price*1.1).floor(-1) %>
           </td>
-          <td colspan="1"><%= o.order_details.product_id.name %></td> 
-          <td colspan="1"><%= o.bill %></td>
+          <td colspan="1"><%= o.quantity %></td>
+          <td colspan="1"><%= ((o.item.price*1.1) * o.quantity).floor(-1) %></td>
         </tr>
         <% end %>
       </tbody>

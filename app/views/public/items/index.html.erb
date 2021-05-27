@@ -19,7 +19,7 @@
             <div class = "title" style = "display: ;">
               <%= item.name %>
             </div>
-            ¥<%= item.price %>
+            ¥<%= (item.price).floor(-1) %>
           </div>
         <% end %>
       </div>
