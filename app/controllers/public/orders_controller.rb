@@ -1,23 +1,24 @@
 class Public::OrdersController < ApplicationController
   # before_action :authenticate_customer!
-  
+
+
   def index
-    @orders = Order.all
-    # @orders = current_customer.orders
+    #@orders = Order.all
+    @orders = current_customer.orders
   end
-  
+
   def show
-    @order = order.find(params[:id])
-  end 
-  
+    @order = Order.find(params[:id])
+  end
+
   def new
     @order = Order.new
   end
-  
+
   def confirm
     params[:order][:payment_method] = params[:order][:payment_method].to_i
-    @order = Order.new(order_params) 
-    
+    @order = Order.new(order_params)
+
     @cart_items = current_customer.cart_items
     @sub_total = 0
 
@@ -27,7 +28,7 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     @bill = 0
     @bill = @sub_total + @order.postage
-  
+
     if params[:order][:address_number] == "1"
       @order.delivery_postal_code = current_customer.postal_code
       @order.delivery_address = current_customer.address
@@ -53,7 +54,7 @@ class Public::OrdersController < ApplicationController
       end
     end
   end
-  
+
   def create
     @order = Order.new(order_create_params)
     @order.customer_id = current_customer.id
@@ -68,9 +69,9 @@ class Public::OrdersController < ApplicationController
     @order.order_status = "入金待ち"
     @order.bill = @bill
     @order.save
-    
-    
-    
+
+
+
     @order_cart_items = current_customer.cart_items
     @order_cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -82,25 +83,25 @@ class Public::OrdersController < ApplicationController
       @order_detail.save
     end
     @order_cart_items.destroy_all
-    
-    
+
+
     redirect_to public_orders_thanks_path
   end
-  
+
   private
-  
+
   def order_params
     params.require(:order).permit(:payment_method )
   end
-  
+
   def order_create_params
     params.require(:order).permit(:payment_method, :delivery_postal_code, :delivery_address, :delivery_name, :bill, :customer_id)
   end
-  
+
   def address_params
     #params.permit(:address, :name, :postal_code, :customer_id)
     params.require(:order).permit(:address, :name, :postal_code, :customer_id)
   end
-  
-  
+
+
 end
