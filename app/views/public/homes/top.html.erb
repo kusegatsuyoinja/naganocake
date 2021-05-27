@@ -12,7 +12,7 @@
   <div class="products">
     <h2 class="products-heading">新着商品</h2>
     <div class="products-index">
-
+      
       <% @newitems.each do |newitem| %>
         <div class="products-item">
           <%= link_to public_item_path(newitem) do %>
@@ -20,11 +20,11 @@
           <% end %>
           <section class="products-text">
             <h5 class="items-text-name"><%= newitem.name %></h5>
-            <h5 class="items-text-price">¥<%= (newitem.price*1.1).floor(-1) %></h5>
+            <h5 class="items-text-price">¥<%= (newitem.price*1.1).floor %></h5>
           </section>
         </div>
       <% end %>
-
+      
     </div>
     <p><%= link_to "全ての商品を見る>", public_items_path %></p>
   </div>
