@@ -7,8 +7,8 @@ class Public::AddressesController < ApplicationController
   end
   
   def create
-    # 特定（今）のユーザーだけが新規保存できるようにする記述がわからない
     address = Address.new(address_params)
+    address.customer_id = current_customer.id
     if address.save(address_params)
       flash[:notice] = "保存ができました！"
       redirect_to public_addresses_path
@@ -26,7 +26,6 @@ class Public::AddressesController < ApplicationController
   
   def edit
     @address = Address.find(params[:id])
-    # この下のif文のユーザー照合の仕方が合ってるかわからない
     if @address.customer == current_user
       render :edit
     else
