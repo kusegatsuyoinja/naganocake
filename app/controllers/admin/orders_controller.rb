@@ -28,7 +28,13 @@ class Admin::OrdersController < ApplicationController
   
   def update
     order = Order.find(params[:id])
+    order_details = order.order_details
     if order.update(order_params)
+      if order.order_status == "入金確認"
+        order_details.each do |order_detail| 
+         order_detail.update(work_status: "制作待ち")
+        end 
+      end 
      flash[:notice] = "更新ができました！"
      redirect_to admin_order_path
     else
