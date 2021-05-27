@@ -4,7 +4,7 @@
       <h6>注文履歴一覧</h6>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-10">
     <table class="table">
@@ -16,7 +16,7 @@
           <th colspan="3">注文ステータス</th>
         </tr>
       </thead>
-      
+
       <tbody>
         <% @orders.each do |o| %>
         <tr>
@@ -31,7 +31,7 @@
           <% sum += order_detail.quantity %>
           <% end %>
           <%= sum %>
-          </td> 
+          </td>
           <td colspan="3"><%= o.order_status %></td>
         </tr>
         <% end %>

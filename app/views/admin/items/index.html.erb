@@ -28,7 +28,7 @@
                     </div>
                   <% end %>
                 </td>
-                <td style = "padding: 15px 0 15px 0;"><%= (item.price).floor(-1) %></td>
+                <td style = "padding: 15px 0 15px 0;"><%= (item.price).floor %></td>
                 <td style = "padding: 15px 0 15px 0;"><%= item.genre.name %></td>
                 <td style = "padding: 15px 0 15px 0;">
                   <% if item.is_active == true %>

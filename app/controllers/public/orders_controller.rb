@@ -34,6 +34,7 @@ class Public::OrdersController < ApplicationController
       @order.delivery_address = current_customer.address
       @order.delivery_name = current_customer.last_name+current_customer.first_name
 
+    byebug
     elsif  params[:order][:address_number] ==  "2"
       @order.delivery_postal_code = Address.find(params[:order][:address]).postal_code
       @order.delivery_address = Address.find(params[:order][:address]).address
