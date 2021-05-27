@@ -21,11 +21,11 @@ class Admin::GenresController < ApplicationController
   def edit
     @genre = Genre.find(params[:id])
     # この下のif文のユーザー照合の仕方が合ってるかわからない
-    if @genre.admin_id == current_user.id
-      render :edit
-    else
-      redirect_to admin_genres_path
-    end
+    # if @genre.admin_id == current_admin.id
+    #   render :edit
+    # else
+    #   redirect_to admin_genres_path
+    # end
   end 
   
   def update
