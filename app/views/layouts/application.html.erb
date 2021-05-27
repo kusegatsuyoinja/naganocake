@@ -20,7 +20,7 @@
 
         <ul class="nav navbar-right">
           <% if customer_signed_in? %>
-            <li class="mr-2 mt-3">
+            <li class="mr-2 mt-4">
             ようこそ！<span class="text-success mr-1"><%= current_customer.last_name %><%= current_customer.first_name %></span>さん！！
             </li>
             <li class="mr-2 pt-2"><%= link_to "マイページ", public_customers_path, class: "btn btn-outline-secondary" %></li>
