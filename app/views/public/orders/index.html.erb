@@ -4,7 +4,7 @@
       <h6>注文履歴一覧</h6>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-12">
     <table class="table table-bordered">
@@ -18,7 +18,7 @@
           <th colspan="2">注文詳細</th>
         </tr>
       </thead>
-      
+
       <tbody>
         <% @orders.each do |o| %>
         <tr>
@@ -29,8 +29,12 @@
             <%= o.delivery_name %>
           </td>
           <!--　注文商品表示（アソシエーション）-->
-          <td colspan="2"><%= o.order_details.item.name %></td> 
-          <td colspan="1"><%= o.bill %></td>
+          <td colspan="2">
+            <% o.order_details.each do |od| %>
+              <P><%= od.item.name %></P>
+            <% end %>
+          </td>
+          <td colspan="1"><%= (o.bill).floor(-1) %></td>
           <td colspan="1"><%= o.order_status %></td>
           <td colspan="2">
             <%= link_to '表示する',  public_order_path(o.id), class: "btn btn-success" %>
