@@ -12,7 +12,7 @@
         <th colspan="2">購入者</th>
         <td colspan="4">
           <!--　購入者表示　-->
-          <%= o.customer.first_name + o.customer.last_name %>
+          <%= @order.customer.first_name + @order.customer.last_name %>
         </td>
       </tr>
       <tr>
@@ -38,7 +38,8 @@
       <tr>
         <th colspan="2">注文ステータス</th>
         <td colspan="4">
-          <%= f.select (:order_status, [['入金待ち', '0'], ['入金確認', '1'],　['製作中', '2'],　['発送準備中', '3'],　['発送済み', '4']], { selected: o.order_status }) %>
+          <%= f.select :order_status, options_for_select([['入金待ち'], ['入金確認'], ['製作中'], ['発送準備中'], ['発送済み']], selected: @order.order_status) %>
+          <!--['入金待ち'], ['入金確認'],　['製作中'],　['発送準備中'],　['発送済み'], { selected: o.order_status }-->
         </td>
         <td colspan="2">
           <%= f.submit '更新', class: "btn btn-success" %>
@@ -62,10 +63,13 @@
             <th colspan="1"></th>
           </tr>
         </thead>
+        
+        
         <tbody>
-        <% @order.each do |o| %>
+        <% @order.order_details.each do |order_detail| %>
           <tr>
-            <td colspan="3"><%= o.order_details.item.name %></td>
+            <!--商品名-->
+            <td colspan="3"><%= order_detail.item.name %></td>
             <!--単価（税込）表示-->
             <td colspan="2"><%= (o.order_details.price). %></td>
             <!--数量表示-->
@@ -73,18 +77,22 @@
             <td colspan="1"><%= o.order_details.quantity %></td>
             <!--小計表示-->
             <td colspan="1">
-              <%= o.order_details.price * o.order_details.quantity %>
-              <% @total += o.order_details.price * o.order_details.quantity %>
+              <%= order_detail.price * order_detail.quantity %>
+              <% @total += order_detail.price * order_detail.quantity %>
             </td>
             <!--制作ステータス表示-->
-            <td colspan="3">
-              <%= f.select (:order_status, [['制作不可', '0'], ['制作待ち', '1'],　['製作中', '2'],　['制作完了', '3'], { selected: o.order_details.work_status }) %>
+            <td>
+            <%= form_with model:order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+              <%= f.select :work_status, options_for_select([['制作不可'], ['制作待ち'], ['製作中'], ['制作完了']], selected: order_detail.work_status) %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+            <% end %>
             </td>
-            <!--注文詳細のURLの名前が合わない-->
-            <td colspan="1"><%= link_to "更新", admin_order_detail_path class: "btn btn-success" %></td>
           </tr>
         <% end %>
         </tbody>
+        
+        
+        
       </table>
     </div>
 
@@ -96,11 +104,11 @@
         </tr>
         <tr>
           <th　class="font-weight-bold">送料</th>
-          <td class="offset-md-1"><%= o.postage %></td>
+          <td class="offset-md-1"><%= @order.postage %></td>
         </tr>
         <tr>
           <th　class="font-weight-bold">請求金額合計</th>
-          <td class="offset-md-1"><% @total * o.postage %></td>
+          <td class="offset-md-1"><% @total * @order.postage %></td>
         </tr>
       </table>
     </div>

@@ -66,6 +66,7 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     @bill = 0
     @bill = @sub_total + @order.postage
+    @order.order_status = "入金待ち"
     @order.bill = @bill
     @order.save
 
@@ -78,6 +79,7 @@ class Public::OrdersController < ApplicationController
       @order_detail.order_id = @order.id
       @order_detail.quantity = cart_item.quantity
       @order_detail.price = (cart_item.item.price*1.1).floor
+      @order_detail.work_status = "制作不可"
       @order_detail.save
     end
     @order_cart_items.destroy_all

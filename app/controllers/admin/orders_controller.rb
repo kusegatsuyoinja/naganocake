@@ -4,11 +4,11 @@ class Admin::OrdersController < ApplicationController
   def index
     @orders = Order.all
     
-    if params[:key] =="order_history"
-      @orders=Order.all
-    else
-      @orders=current_customer.orders
-    end
+    # if params[:key] =="order_history"
+    #   @orders=Order.all
+    # else
+    #   @orders=current_customer.orders
+    # end
 # 　path = Rails.application.routes.recognize_path(request.referer)
 
 # 　# path[:controller]で遷移元コントローラーを、path[:action]でアクションを取得
@@ -21,6 +21,8 @@ class Admin::OrdersController < ApplicationController
   
   def show
     @order = Order.find(params[:id])
+    # 制作ステータスのform_withに使用
+    #@order_details = @order.order_details
     @total = 0
   end 
   
