@@ -23,8 +23,8 @@
   height: 280px;
   text-align: center;
   margin: 20px auto;
-  background-image: url("/top.png");
-  background-size: 100% auto;
+  background-image: url("/top2.jpg");
+  background-size: 100%;
 }
 
 .top-main-visual-content {
@@ -37,6 +37,10 @@
   padding-top: 80px;
   font-size: 20px;
   font-weight: bold;
+}
+
+body {
+  font-family: "Georgia";
 }
 
 .products {
