@@ -63,15 +63,15 @@
             <th colspan="1"></th>
           </tr>
         </thead>
-        
-        
+
+
         <tbody>
         <% @order.order_details.each do |order_detail| %>
           <tr>
             <!--商品名-->
             <td colspan="3"><%= order_detail.item.name %></td>
             <!--単価（税込）表示-->
-            <td colspan="2"><%= (o.order_details.price). %></td>
+            <td colspan="2"><%= (o.order_details.price) %></td>
             <!--数量表示-->
 
             <td colspan="1"><%= o.order_details.quantity %></td>
@@ -90,9 +90,9 @@
           </tr>
         <% end %>
         </tbody>
-        
-        
-        
+
+
+
       </table>
     </div>
 

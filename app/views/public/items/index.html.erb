@@ -16,10 +16,8 @@
                 <%= attachment_image_tag item, :image, size: "180x140", fallback: "no_image.jpg"%>
               </div>
             <% end %>
-            <div class = "title" style = "display: ;">
-              <%= item.name %>
-            </div>
-            ¥<%= (item.price).floor(-1) %>
+              <h6 class="items-text-name title"><%= item.name %></h6>
+              <h6 class="items-text-price">¥<%= (item.price).floor(-1) %></h6>
           </div>
         <% end %>
       </div>
