@@ -81,12 +81,12 @@
               <% @total += order_detail.price * order_detail.quantity %>
             </td>
             <!--制作ステータス表示-->
-            <td colspan="3">
-              <%= order_detail.select :order_details_status, options_for_select([['入金待ち'], ['入金確認'], ['製作中'], ['発送準備中'], ['発送済み']], selected: @order.order_status) %>
-              <%#= f.select (:order_status, [['制作不可', '0'], ['制作待ち', '1'],　['製作中', '2'],　['制作完了', '3'], { selected: o.order_details.work_status }) %>-->
+            <td>
+            <%= form_with model:order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+              <%= f.select :work_status, options_for_select([['制作不可'], ['制作待ち'], ['製作中'], ['制作完了']], selected: order_detail.work_status) %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+            <% end %>
             </td>
-            <!--注文詳細のURLの名前が合わない-->
-            <td colspan="1"><%= link_to "更新", admin_order_detail_path, class: "btn btn-success" %></td>
           </tr>
         <% end %>
         </tbody>

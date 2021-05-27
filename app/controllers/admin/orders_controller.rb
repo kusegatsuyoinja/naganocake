@@ -21,8 +21,8 @@ class Admin::OrdersController < ApplicationController
   
   def show
     @order = Order.find(params[:id])
+    # 制作ステータスのform_withに使用
     #@order_details = @order.order_details
-    # binding.pry
     @total = 0
   end 
   
