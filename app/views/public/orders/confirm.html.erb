@@ -1,10 +1,10 @@
 <div class=container>
     <h1>注文情報確認</h1>
-    
+
     <div class="row">
         <div class="col-sm-12">
             <table align="left" class="table table-bordered">
-                
+
                 <thead>
                     <tr>
                         <th>商品名</th>
@@ -13,20 +13,20 @@
                         <th>小計</th>
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     <% @cart_items.each do |cart_item| %>
                     <tr>
-                        <td><%= attachment_image_tag cart_item.item, :image, :fill, 50, 50 %><%= cart_item.item.name %></td>
-                        <td><%= (cart_item.item.price*1.1).floor %></td>
+                        <td><%= attachment_image_tag cart_item.item, :image, size: "50x50" %>  <%= cart_item.item.name %></td>
+                        <td>￥<%= (cart_item.item.price*1.1).floor(-1) %></td>
                         <td><%= cart_item.quantity %></td>
-                        <td><%= (cart_item.item.price*1.1).floor*cart_item.quantity %></td>
+                        <td>￥<%= (cart_item.item.price*1.1).floor(-1)*cart_item.quantity %></td>
                         <% end %>
                     </tr>
                 </tbody>
-                
+
             </table>
-            
+
             <div class="col-sm-12">
                 <table class="table-light table table-hover">
                     <tr>
@@ -40,13 +40,13 @@
                     </tr>
                 </table>
             </div>
-            
-            <div>支払方法<%= @order.payment_method %></div>
-            
-            <div>お届け先　〒<%= @order.delivery_postal_code %> <%= @order.delivery_address %> <%= @order.delivery_name %></div>
-            
+
+            <div class="mb-5">支払方法: <%= @order.payment_method %></div>
+
+            <div class="mb-5">お届け先:　〒<%= @order.delivery_postal_code %> <%= @order.delivery_address %>   <%= @order.delivery_name %> 様</div>
+
         </div>
-        
+
         <div class ="row">
             <div class="mx-auto">
                 <%= form_with model: @order, url: public_orders_path, local: true do |f| %>
@@ -55,11 +55,11 @@
                 <%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
                 <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
                 <%= f.hidden_field :bill, :value => @bill %>
-                <%= f.submit '注文を確定する', class:"btn btn-success" %>
+                <%= f.submit '注文を確定する', class:"btn btn-outline-secondary" %>
                 <% end %>
             </div>
         </div>
-        
+
     </div>
 </div>
 <%#= @order.delivery_address %>
