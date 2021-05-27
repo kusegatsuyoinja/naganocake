@@ -12,7 +12,7 @@
         <th colspan="2">購入者</th>
         <td colspan="4">
           <!--　購入者表示　-->
-          <%= @order.customer.first_name + @order.customer.last_name %>
+          <%= @order.customer.last_name + @order.customer.first_name %>
         </td>
       </tr>
       <tr>
@@ -38,7 +38,7 @@
       <tr>
         <th colspan="2">注文ステータス</th>
         <td colspan="4">
-          <%= f.select :order_status, options_for_select([['入金待ち'], ['入金確認'], ['製作中'], ['発送準備中'], ['発送済み']], selected: @order.order_status) %>
+          <%= f.select :order_status, options_for_select([['入金待ち'], ['入金確認'], ['製作中'], ['発送待ち'], ['発送済み']], selected: @order.order_status) %>
           <!--['入金待ち'], ['入金確認'],　['製作中'],　['発送準備中'],　['発送済み'], { selected: o.order_status }-->
         </td>
         <td colspan="2">
@@ -90,9 +90,6 @@
           </tr>
         <% end %>
         </tbody>
-        
-        
-        
       </table>
     </div>
     
@@ -100,15 +97,15 @@
       <table class="table table-borderless">
         <tr>
           <th　class="font-weight-bold">商品合計</th>
-          <td class="offset-md-1"><% @total %></td>
+          <td class="offset-md-1"><%= @total.to_s + "円" %></td>
         </tr>
         <tr>
           <th　class="font-weight-bold">送料</th>
-          <td class="offset-md-1"><%= @order.postage %></td>
+          <td class="offset-md-1"><%= @order.postage.to_s + "円" %></td>
         </tr>
         <tr>
           <th　class="font-weight-bold">請求金額合計</th>
-          <td class="offset-md-1"><% @total * @order.postage %></td>
+          <td class="offset-md-1"><%= "#{@total + @order.postage}円" %></td>
         </tr>
       </table>
     </div>
