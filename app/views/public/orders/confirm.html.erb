@@ -21,6 +21,7 @@
                         <td>￥<%= (cart_item.item.price*1.1).floor(-1) %></td>
                         <td><%= cart_item.quantity %></td>
                         <td>￥<%= (cart_item.item.price*1.1).floor(-1)*cart_item.quantity %></td>
+
                         <% end %>
                     </tr>
                 </tbody>
@@ -44,6 +45,7 @@
             <div class="mb-5">支払方法: <%= @order.payment_method %></div>
 
             <div class="mb-5">お届け先:　〒<%= @order.delivery_postal_code %> <%= @order.delivery_address %>   <%= @order.delivery_name %> 様</div>
+
 
         </div>
 
