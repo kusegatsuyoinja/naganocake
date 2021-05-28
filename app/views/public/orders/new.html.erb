@@ -27,16 +27,16 @@
         <div class="col-sm-12">
         <label style="margin-left: 60px;"><%= f.radio_button :address_number, 3 %> 新しいお届け先</label>
         <div style="display: flex; margin-left:15% ;">
-          <div  style="display: flex flex-direction: column;  flex-wrap: wrap;  width: 60px;">
+          <div>
             <%= f.label :"郵便番号"%><br><br>
-            <%= f.label :"住    所"%><br><br>
+            <%= f.label :"住    所" %><br><br>
             <%= f.label :"宛    名"%><br><br>
           </div>
           <div style=" margin-left:20px; ">
-            <%= f.text_field :postal_code  %><br><br>
-            <%= f.text_field :address ,size: "60" %><br><br>
-            <%= f.text_field :name %><br><br>
-           <%= f.submit "確認画面に進む", class: "btn btn-primary text-cenrer" %>
+            <%= f.text_field :postal_code, placeholder: "ハイフン無し" %><br><br>
+            <%= f.text_field :address ,size: "60", placeholder: "東京都渋谷区代々木神園町0-0" %><br><br>
+            <%= f.text_field :name, placeholder: "令和道子"  %><br><br>
+           <%= f.submit "確認画面に進む", class: "btn btn-outline-secondary" %>
           </div>
         </div>  
         
