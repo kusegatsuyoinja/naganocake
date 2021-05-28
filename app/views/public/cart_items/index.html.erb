@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-12 mb-3">
+      <h1 class="col-sm-8 my-3">ショッピングカート</h1>
+    </div>
+
+    <div class="mb-3">
+      <div><%= link_to "カートを空にする", public_cart_items_destroy_all_path, method: :delete, class: "btn btn-outline-secondary" %></div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <table class="table table-hover table-inverse">
+
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込み）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @total = 0 %>
+        <% @cart_items.each do |cart_item| %>
+        <tr>
+
+          <td><%= attachment_image_tag cart_item.item, :image, size: "50x50" %>  <%= cart_item.item.name %></td>
+          <td><%= (cart_item.item.price*1.1).floor %></td>
+          <td>
+            <%=form_with model: cart_item, url: public_cart_item_path(cart_item), local:true do |f| %>
+              <%=f.select :quantity, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10]]%>
+              <%=f.hidden_field :id, value: cart_item.id %>
+              <%=f.submit'変更',class:"btn btn-sm btn-outline-success"%>
+            <% end %>
+          </td>
+          <td><%=  ((cart_item.item.price*1.1).floor*cart_item.quantity) %>
+            <% @total = @total+((cart_item.item.price*1.1).floor*cart_item.quantity) %>
+          </td>
+          <td><%= link_to "削除", public_cart_item_path(cart_item), class: "btn btn-sm btn-danger", method: :delete %></td>
+        </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-8 mb-3">
+      <%= link_to "買い物を続ける", root_path, class:"btn btn-primary" %>
+    </div>
+
+    <div class="col-sm-4 float-right">
+      <table class="table table-bordered text-right">
+        <thead>
+          <tr>
+            <td>合計金額</td>
+            <td>¥<%= @total %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 cart_continue_to_order">
+      <%= link_to "情報入力に進む", new_public_order_path,class: "btn btn-success" %>
+    </div>
+  </div>
+
+</div>
+
+
+

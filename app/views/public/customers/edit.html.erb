@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class='col-md-9 offset-md-1'>
+      <%#= form_for (resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= form_for @customer,:url => {controller: "public/customers", action: "update"} do |f|%>
+        <table class="table table-borderless">
+          <thead><h5>会員情報編集</h5></thead>
+            <tbody>
+              <div class = 'form-group'>
+                <%= f.label :"氏名", class:"col-sm-4 col-form-label-sm" %>
+                <%= f.text_field :last_name, autofocus: true, class:"form-control form-control-sm", placeholder: @customer.last_name %>
+                <%= f.text_field :first_name, autofocus: true, class:"form-control form-control-sm", placeholder: @customer.first_name %>
+              </div>
+              <div class = 'form-group'>
+                <%= f.label :"フリガナ", class:"col-sm-4 col-form-label-sm" %>
+                <%= f.text_field :last_ruby, autofocus: true, class:"form-control form-control-sm", placeholder: @customer.last_ruby %>
+                <%= f.text_field :first_ruby, autofocus: true, class:"form-control form-control-sm", placeholder: @customer.first_ruby %>
+              </div>
+              <div class = 'form-group'>
+                <%= f.label :"郵便番号", class:"col-sm-4 col-form-label-sm" %>
+                <%= f.text_field :postal_code, autocomplete: "postal_code", class: "form-control", placeholder: @customer.postal_code %>
+              </div>
+              <div class = 'form-group'>
+                <%= f.label :"住所", class:"col-sm-4 col-form-label-sm" %>
+                <%= f.text_field :address, autocomplete: "address", class: "form-control", placeholder: @customer.address %>
+              </div>
+              <div class = 'form-group'>
+                <%= f.label :"電話番号", class:"col-sm-4 col-form-label-sm" %>
+                <%= f.text_field :phone_number, autocomplete: "phone_number", class: "form-control", placeholder: @customer.phone_number %>
+              </div>
+              <div class = 'form-group'>
+                <%= f.label :"メールアドレス", class:"col-sm-4 col-form-label-sm" %>
+                <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: @customer.email %>
+              </div>
+            </tbody>
+            <%= f.submit "編集内容を保存", class: "btn btn-outline-secondary" %>
+        </table>
+      <% end %>
+      <%= link_to "退会する", public_customers_withdrawal_path, method: :get, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+</div>
+         

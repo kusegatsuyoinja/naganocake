@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div>マイページ</div>
+    <div class="col-sm-12 mb-3">
+      <div class="col-sm-8 my-3">登録情報</div>
+    </div>
+    <div class="md-5">
+      <div><%= link_to "編集する", edit_public_customers_path, class: "btn btn-secondary" %></div>
+
+    <table border=”1″>
+      <thead class=“table-light”>
+        <tr>
+          <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">氏名</th>
+          <td style = "padding: 5px 400px 5px 2px;"><%= @customer.last_name + " " + @customer.first_name %></td>
+        </tr>
+        <tr>
+          <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">カナ</th>
+          <td style = "padding: 5px 400px 5px 2px;"><%= @customer.last_ruby + " " + @customer.first_ruby %></td>
+        </tr>
+        <tr>
+          <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">郵便番号</th>
+          <td style = "padding: 5px 400px 5px 2px;"><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">住所</th>
+          <td style = "padding: 5px 400px 5px 2px;"><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">電話番号</th>
+          <td style = "padding: 5px 400px 5px 2px;"><%= @customer.phone_number %></td>
+        </tr>
+        <tr>
+          <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">メールアドレス</th>
+          <td style = "padding: 5px 400px 5px 2px;"><%= @customer.email %></td>
+        </tr>
+      </thead>
+    </table>
+    </div>
+    <div class="col-sm-12 mb-3">
+      <div class="col-sm-8 my-3">配送先</div>
+    </div>
+    <div class="mb-3">
+      <div><%= link_to "一覧を見る", public_addresses_path, class: "btn btn-outline-secondary" %></div>
+    </div>
+    <div class="col-sm-12 mb-3">
+      <div class="col-sm-8 my-3">注文履歴</div>
+    </div>
+    <div class="mb-3">
+      <div><%= link_to "一覧を見る", public_orders_path, class: "btn btn-outline-secondary" %></div>
+    </dib>
+
+

@@ -1,0 +1,48 @@
+<div class="containar">
+  <div class='row'>
+    <div class='col-md-6 offset-md-1'>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name))do |f| %>
+        <table class="table table-borderless">
+          <h5>ログイン</h5>
+          <tbody>
+            <p>会員の方はこちらからログイン</p>
+              <tr>
+                <td>
+                  <div class="form-group row">
+                    <%= f.label :メールアドレス, class:"col-sm-4 col-form-label" %>
+                    <div class="col-sm-8">
+                      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"sample@example.com" %>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group row">
+                    <%= f.label :パスワード, class:"col-sm-4 col-form-label" %>
+                    <div class="col-sm-8">
+                      <%= f.password_field :password, autocomplete: "current-password", class:"form-control", placeholder:"Password" %>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="actions">
+                    <%= f.submit "ログイン", class: "btn btn-secondary" %>
+                  </div>
+                </td>
+              </tr>
+            <tr>
+              <td>
+                <p>会員登録がお済みでない方</p>
+                <%= render "public/shared/links" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,117 @@
+<div class="containar">
+  <div class='row'>
+    <div class='col-md-6 offset-md-1'>
+      <table class="table table-borderless">
+      <thead><h5>新規会員登録</h5></thead>
+    
+      <%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= form_with model: @customer, url: registration_path(@customer), local: true do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <tbody>
+        <tr>
+          <td>
+            <div class="form-row">
+              <%= f.label :名前, class:"col-sm-4 col-form-label-sm" %>
+              <div class="col-sm-4">
+                <%= f.text_field :last_name, autofocus: true, class:"form-control form-control-sm", placeholder: "（姓）" %>
+              </div>
+              <div class="col-sm-4">
+                <%= f.text_field :first_name, autofocus: true, class:"form-control form-control-sm", placeholder: "（名）" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-row">
+              <%= f.label :フリガナ, class:"col-sm-4 col-form-label-sm" %>
+              <div class="col-sm-4">
+                <%= f.text_field :last_ruby, autofocus: true, class:"form-control form-control-sm", placeholder: "（セイ）" %>
+              </div>
+              <div class="col-sm-4">
+                <%= f.text_field :first_ruby, autofocus: true, class:"form-control form-control-sm", placeholder: "（メイ）" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-row">
+              <%= f.label :メールアドレス, class:"col-sm-4 col-form-label-sm" %>
+              <div class="col-sm-8">
+                 <%= f.email_field :email, autofocus: true, class:"form-control form-control-sm", placeholder:"sample@example.com" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-row">
+              <%= f.label :郵便番号（ハイフンなし）,class:"col-sm-4 col-form-label-sm" %>
+              <div class="col-sm-8">
+                <%= f.text_field :postal_code, autofocus: true, class:"form-control form-control-sm" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-row">
+              <%= f.label :住所, class:"col-sm-4 col-form-label-sm" %>
+              <div class="col-sm-8">
+                <%= f.text_field :address, autofocus: true, class:"form-control form-control-sm" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-row">
+              <%= f.label :電話番号（ハイフンなし）, class:"col-sm-4 col-form-label-sm" %>
+              <div class="col-sm-8">
+                <%= f.text_field :phone_number, autofocus: true, class:"form-control form-control-sm" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-row">
+              <%= f.label :パスワード（６文字以上）, class:"col-sm-4 col-form-label-sm"%>
+              <%# if @minimum_password_length %>
+                <%#= @minimum_password_length %>
+              <%# end %>
+                <div class="col-sm-8">
+                  <%= f.password_field :password, autocomplete: "new-password", class:"form-control form-control-sm" %>
+                </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-row">
+              <%= f.label :パスワード（確認用）, class:"col-sm-4 col-form-label-sm" %>
+              <div class="col-sm-8">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control form-control-sm" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="actions">
+              <%= f.submit "新規登録", class: "btn btn-secondary" %>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      <% end %>
+      </table>
+      
+      <h5>既に登録済みの方</h5>
+      <%= render "public/shared/links" %>
+    </div>
+  </div>
+</div>
+
+

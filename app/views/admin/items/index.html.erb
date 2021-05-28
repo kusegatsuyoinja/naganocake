@@ -1,0 +1,51 @@
+<main>
+  <div class = "container px-5 px-sm-0">
+    <div class = "row">
+      <div class = "offset-md-1 col-md-10">
+        <h4>商品一覧</h4>
+        <%= link_to new_admin_item_path do %>
+          <i class="fas fa-flushed fa-3x" style = "color: #b0941e; padding-left: 800px;"></i>
+        <% end %>
+
+        <table border="0" rules="rows"  class = " border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style = "padding: 5px 50px 5px 5px; background-color: #dddddd;">商品ID</th>
+              <th style = "padding: 5px 200px 5px 0; background-color: #dddddd;">商品名</th>
+              <th style = "padding: 5px 50px 5px 0; background-color: #dddddd;">税抜価格</th>
+              <th style = "padding: 5px 200px 5px 0; background-color: #dddddd;">ジャンル</th>
+              <th style = "padding: 5px 50px 5px 0; background-color: #dddddd;">ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @item.each do |item| %>
+              <tr>
+                <td style = "padding: 15px 0 15px 5px;"><%= item.id %></td>
+                <td style = "padding: 15px 0 15px 0;">
+                  <%= link_to admin_item_path(item.id) do %>
+                    <div style = "color: #000000; text-decoration: underline;">
+                    <%= item.name %>
+                    </div>
+                  <% end %>
+                </td>
+                <td style = "padding: 15px 0 15px 0;"><%= (item.price).floor %></td>
+                <td style = "padding: 15px 0 15px 0;"><%= item.genre.name %></td>
+                <td style = "padding: 15px 0 15px 0;">
+                  <% if item.is_active == true %>
+                    <div style = "color: #339900;">
+                      販売中
+                    </div>
+                  <% else %>
+                    <div style = "color: #9ba5a0;">
+                      販売停止中
+                    </div>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,19 @@
+// Place all the styles related to the admin/items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.table {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.title{
+  color: #FF5E0D;
+}
+
+.imagephoto{
+  position: relative;
+  display: block;
+  border: 14px solid #e6e3dc;
+  margin: 0 0 15px 0;
+}

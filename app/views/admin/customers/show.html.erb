@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 mb-3">
+      <div><%= @customer.last_name + @customer.first_name %>さんの会員詳細</div>
+        </div>
+         <table border=”1″>
+          <thead class=“table-light”>
+            <tr>
+              <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">氏名</th>
+              <td style = "padding: 5px 400px 5px 2px;"><%= @customer.last_name + " " + @customer.first_name %></td>
+            </tr>
+            <tr>
+              <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">カナ</th>
+              <td style = "padding: 5px 400px 5px 2px;"><%= @customer.last_ruby + " " + @customer.first_ruby %></td>
+            </tr>
+            <tr>
+              <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">郵便番号</th>
+              <td style = "padding: 5px 400px 5px 2px;"><%= @customer.postal_code %></td>
+            </tr>
+            <tr>
+              <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">住所</th>
+              <td style = "padding: 5px 400px 5px 2px;"><%= @customer.address %></td>
+            </tr>
+            <tr>
+              <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">電話番号</th>
+              <td style = "padding: 5px 400px 5px 2px;"><%= @customer.phone_number %></td>
+            </tr>
+            <tr>
+              <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">メールアドレス</th>
+              <td style = "padding: 5px 400px 5px 2px;"><%= @customer.email %></td>
+            </tr>
+            <th style = "padding: 5px 100px 5px 2px; background-color: #dddddd;">会員ステータス</th>
+              <td>
+                <% if @customer.is_deleted == true %>
+                  <div style="color:#696969">退会</div>
+                <% else %>
+                  <div style="color:#c71585">有効</div>
+                <% end %>
+              </td>
+          </tr>
+      </thead>
+    </table>
+    
+    <div class="col-sm-12 mb-3">
+      <div class="mb-3">
+        <div><%= link_to "編集する", edit_admin_customer_path, class: "btn btn-outline-secondary" %></div>
+      </div>
+      <div class="mb-3">
+        <div><%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-outline-secondary" %></div>
+      </div>
+    </div>

@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 offset-md-1">
+      <h6>注文履歴詳細</h6>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10">
+    <table class="table　table table-borderless">
+      <tr>
+        <th colspan="2">購入者</th>
+        <td colspan="4">
+          <!--　購入者表示　-->
+          <%= @order.customer.last_name + @order.customer.first_name %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">注文日</th>
+        <td colspan="4">
+          <%= @order.created_at %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">配送先</th>
+        <td colspan="4">
+          <%= @order.delivery_postal_code %>　<%= @order.delivery_address %><br>
+          <%= @order.delivery_name %>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">支払い方法</th>
+        <td colspan="4">
+          <%= @order.payment_method %>
+        </td>
+      </tr>
+      <%= form_with model:@order, url: admin_order_path, method: :patch do |f| %>
+      <tr>
+        <th colspan="2">注文ステータス</th>
+        <td colspan="4">
+          <%= f.select :order_status, options_for_select([['入金待ち'], ['入金確認'], ['製作中'], ['発送待ち'], ['発送済み']], selected: @order.order_status) %>
+          <!--['入金待ち'], ['入金確認'],　['製作中'],　['発送準備中'],　['発送済み'], { selected: o.order_status }-->
+        </td>
+        <td colspan="2">
+          <%= f.submit '更新', class: "btn btn-success" %>
+      	</td>
+      </tr>
+      <% end %>
+    </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table table-borderless">
+        <thead class="thead-light">
+          <tr>
+            <th colspan="3">商品名</th>
+            <th colspan="2">単価（税込）</th>
+            <th colspan="1">数量</th>
+            <th colspan="1">小計</th>
+            <th colspan="3">制作ステータス</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+
+
+        <tbody>
+        <% @order.order_details.each do |order_detail| %>
+          <tr>
+            <!--商品名-->
+            <td colspan="3"><%= order_detail.item.name %></td>
+            <!--単価（税込）表示-->
+            <td colspan="2"><%= order_detail.price %></td>
+            <!--数量表示-->
+
+            <td colspan="1"><%= order_detail.quantity %></td>
+            <!--小計表示-->
+            <td colspan="1">
+              <%= order_detail.price * order_detail.quantity %>
+              <% @total += order_detail.price * order_detail.quantity %>
+            </td>
+            <!--制作ステータス表示-->
+            <td>
+            <%= form_with model:order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+              <%= f.select :work_status, options_for_select([['制作不可'], ['制作待ち'], ['製作中'], ['制作完了']], selected: order_detail.work_status) %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+
+      </table>
+    </div>
+
+    <div class="col-md-2 offset-md-1">
+      <table class="table table-borderless">
+        <tr>
+          <th　class="font-weight-bold">商品合計</th>
+          <td class="offset-md-1"><%= @total.to_s + "円" %></td>
+        </tr>
+        <tr>
+          <th　class="font-weight-bold">送料</th>
+          <td class="offset-md-1"><%= @order.postage.to_s + "円" %></td>
+        </tr>
+        <tr>
+          <th　class="font-weight-bold">請求金額合計</th>
+          <td class="offset-md-1"><%= "#{@total + @order.postage}円" %></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+</div>
